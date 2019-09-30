@@ -17,7 +17,7 @@ This source code designed for absolute beginer in Firbase Firestore and it domin
 ![alt text](screenshots\Screenshot_1569804024.png "Update Page") -->
 <img src="screenshots\Screenshot_1569803907.png"
      alt="Home Page"
-     style="float: left; margin-right: 10px; width:200px" />
+     style="float: left; margin-right: 10px; width:200px; hight:100px" />
 <img src="screenshots\Screenshot_1569803932.png"
      alt="Add Page"
      style="float: left; margin-right: 10px; width:200px" />
