@@ -49,7 +49,7 @@ To get started to this project you should do the following steps:
 If you are new to flutter and firebase check the video bellow to get more information on how to connect your flutter app with firebase project. 
 
 
-[![How to connect your flutter app with firebase project](https://img.youtube.com/vi/DqJ_KjFzL9I/0.jpg)](https://www.youtube.com/watch?v=DqJ_KjFzL9)
+[![How to connect your flutter app with firebase project](https://img.youtube.com/vi/DqJ_KjFzL9I/0.jpg)](https://www.youtube.com/watch?v=DqJ_KjFzL9I)
 
 # Insert a row to firestore (Create)
 
