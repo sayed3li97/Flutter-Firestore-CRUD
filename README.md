@@ -9,32 +9,134 @@ This is a simple Flutter project that dominsrate all the CRUD functionality:
 
 This source code designed for absolute beginer in Firbase Firestore and it dominsrate the simplist way to the basic functionilties above.
 
+## Demo
+---
+<img height="480px" src="screenshots\animatedscreenshot.gif">
+
 ## Screenshots
 ---
 <!-- ![alt text](screenshots\Screenshot_1569803907.png "Home Page")
 ![alt text](screenshots\Screenshot_1569803932.png "Add Page")
 ![alt text](screenshots\Screenshot_1569803958.png "Add Page")
 ![alt text](screenshots\Screenshot_1569804024.png "Update Page") -->
-<img src="screenshots\Screenshot_1569803907.png"
+<img height="380px" src="screenshots\Screenshot_1569803907.png"
      alt="Home Page"
-     style="float: left; margin-right: 10px; width:200px; hight:100px" />
-<img src="screenshots\Screenshot_1569803932.png"
+     style="float: left; margin-right: 10px;" />
+<img height="380px" src="screenshots\Screenshot_1569803932.png"
      alt="Add Page"
-     style="float: left; margin-right: 10px; width:200px" />
-<img src="screenshots\Screenshot_1569803958.png"
+     style="float: left; margin-right: 10px; " />
+<img height="380px" src="screenshots\Screenshot_1569803958.png"
      alt="Add Page"
-     style="float: left; margin-right: 10px; width:200px" />
-<img src="screenshots\Screenshot_1569804024.png "
+     style="float: left; margin-right: 10px; " />
+<img height="380px" src="screenshots\Screenshot_1569804024.png "
      alt="Update Page"
-     style="float: left; margin-right: 10px; width:200px" />
+     style="float: left; margin-right: 10px;" />
 
 
 # Getting Started
 ---
+
 To get started to this project you should do the following steps: 
 1. Sign in/up to firebase 
 2. Go to console 
 3. Start a new project 
 4. Create a Firestore database 
-5. Create a "books"" collection with one record 
-6. Download and input google-service.json to the correct location 
+5. Create a "books"" collection 
+6. Add a new record with a "title" and "author" fileds  
+7. Download and input google-service.json to the correct location 
+8. Run flutter pub get 
+
+If you are new to flutter and firebase check the video bellow to get more information on how to connect your flutter app with firebase project. 
+
+
+[![How to connect your flutter app with firebase project](https://img.youtube.com/vi/DqJ_KjFzL9I/0.jpg)](https://www.youtube.com/watch?v=DqJ_KjFzL9)
+
+# Insert a row to firestore (Create)
+
+```dart
+Map<String, dynamic> newBook = new Map<String,dynamic>();
+    newBook["title"] = titleController.text;
+    newBook["author"] = authorController.text;
+
+Firestore.instance
+        .collection("books")
+        .add(newBook)
+        .whenComplete((){
+        Navigator.of(context).pop();
+      } );
+```
+
+# Edit a row in firestore (Update)
+
+```dart
+Map<String, dynamic> updateBook = new Map<String,dynamic>();
+ updateBook["title"] = titleController.text;
+ updateBook["author"] = authorController.text;
+ // Updae Firestore record information regular way
+Firestore.instance
+    .collection("books")
+    .document(document.documentID)
+    .updateData(updateBook)
+    .whenComplete((){
+  Navigator.of(context).pop();
+});
+```
+
+```dart
+Map<String, dynamic> updateBook = new Map<String,dynamic>();
+ updateBook["title"] = titleController.text;
+ updateBook["author"] = authorController.text;
+Firestore.instance.runTransaction((transaction) async {
+    await transaction.update(document.reference, updateBook)
+        .then((error){
+      Navigator.of(context).pop();
+    });
+  });
+},
+```
+
+# Delete a row in firestore (Delete)
+
+```dart
+Firestore.instance
+     .collection("books")
+     .document(document.documentID)
+     .delete()
+     .catchError((e){
+   print(e);
+ });
+
+```
+
+# View all the rows in a collection from firestore (Retrive)
+
+```dart
+ @override
+  Widget build(BuildContext context) {
+    return StreamBuilder<QuerySnapshot>(
+        stream: Firestore.instance.collection('books').snapshots(),
+        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+          if (snapshot.hasError)
+            return new Text('Error: ${snapshot.error}');
+          switch (snapshot.connectionState) {
+            case ConnectionState.waiting: return Center(child: CircularProgressIndicator(),);
+            default:
+              return new ListView(
+                padding: EdgeInsets.only(bottom: 80),
+                children: snapshot.data.documents.map((DocumentSnapshot document) {
+                  return Padding(
+                    padding: EdgeInsets.symmetric(vertical: 3, horizontal: 10),
+                    child: Card(
+                      child: ListTile(
+                        title: new Text("Title " + document['title']),
+                        subtitle: new Text("Author " + document['author']),
+                      ),
+                    ),
+                  );
+                }).toList(),
+              );
+          }
+        },
+      );
+  }
+```
