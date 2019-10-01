@@ -15,10 +15,6 @@ This source code designed for absolute beginner in Firebase Firestore and it dem
 
 ## Screenshots
 
-<!-- ![alt text](screenshots\Screenshot_1569803907.png "Home Page")
-![alt text](screenshots\Screenshot_1569803932.png "Add Page")
-![alt text](screenshots\Screenshot_1569803958.png "Add Page")
-![alt text](screenshots\Screenshot_1569804024.png "Update Page") -->
 <img height="380px" src="screenshots\Screenshot_1569803907.png"
      alt="Home Page"
      style="float: left; margin-right: 10px;" />
@@ -68,6 +64,8 @@ Firestore.instance
 
 # Edit a row in firestore (Update)
 
+Basic Update function
+
 ```dart
 Map<String, dynamic> updateBook = new Map<String,dynamic>();
  updateBook["title"] = "title value";
@@ -81,6 +79,8 @@ Firestore.instance
          // You can add your desire action after the row is updated 
 });
 ```
+
+Or update using a transaction 
 
 ```dart
 Map<String, dynamic> updateBook = new Map<String,dynamic>();
