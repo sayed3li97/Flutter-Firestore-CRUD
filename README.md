@@ -1,20 +1,20 @@
 # Flutter Firestore CRUD
 
-This is a simple Flutter project that dominsrate all the CRUD functionality: 
+This is a simple Flutter project that demonstrate all the CRUD functionality: 
 
 - **Create** / **insert** from firestore
 - **Retrive** / **View** from firestore
 - **Update** / **Edit** from firestore
 - **Delete** / **Remove** from firestore
 
-This source code designed for absolute beginer in Firbase Firestore and it dominsrate the simplist way to the basic functionilties above.
+This source code designed for absolute beginner in Firebase Firestore and it demonstrates the simplest way to the basic functionalities above.
 
 ## Demo
----
+
 <img height="480px" src="screenshots\animatedscreenshot.gif">
 
 ## Screenshots
----
+
 <!-- ![alt text](screenshots\Screenshot_1569803907.png "Home Page")
 ![alt text](screenshots\Screenshot_1569803932.png "Add Page")
 ![alt text](screenshots\Screenshot_1569803958.png "Add Page")
@@ -34,7 +34,6 @@ This source code designed for absolute beginer in Firbase Firestore and it domin
 
 
 # Getting Started
----
 
 To get started to this project you should do the following steps: 
 1. Sign in/up to firebase 
@@ -42,10 +41,11 @@ To get started to this project you should do the following steps:
 3. Start a new project 
 4. Create a Firestore database 
 5. Create a "books"" collection 
-6. Add a new record with a "title" and "author" fileds  
+6. Add a new record with a "title" and "author" fields    
 7. Download and input google-service.json to the correct location 
 8. Run flutter pub get 
 
+---
 If you are new to flutter and firebase check the video bellow to get more information on how to connect your flutter app with firebase project. 
 
 
@@ -55,14 +55,14 @@ If you are new to flutter and firebase check the video bellow to get more inform
 
 ```dart
 Map<String, dynamic> newBook = new Map<String,dynamic>();
-    newBook["title"] = titleController.text;
-    newBook["author"] = authorController.text;
+    newBook["title"] = "title value";
+    newBook["author"] = "author value";
 
 Firestore.instance
         .collection("books")
         .add(newBook)
         .whenComplete((){
-        Navigator.of(context).pop();
+        // You can add your desire action after the row is added
       } );
 ```
 
@@ -70,26 +70,26 @@ Firestore.instance
 
 ```dart
 Map<String, dynamic> updateBook = new Map<String,dynamic>();
- updateBook["title"] = titleController.text;
- updateBook["author"] = authorController.text;
+ updateBook["title"] = "title value";
+ updateBook["author"] = "author value";
  // Updae Firestore record information regular way
 Firestore.instance
     .collection("books")
     .document(document.documentID)
     .updateData(updateBook)
     .whenComplete((){
-  Navigator.of(context).pop();
+         // You can add your desire action after the row is updated 
 });
 ```
 
 ```dart
 Map<String, dynamic> updateBook = new Map<String,dynamic>();
- updateBook["title"] = titleController.text;
- updateBook["author"] = authorController.text;
+ updateBook["title"] = "title value";
+ updateBook["author"] = "author value";
 Firestore.instance.runTransaction((transaction) async {
     await transaction.update(document.reference, updateBook)
         .then((error){
-      Navigator.of(context).pop();
+     // You can add your desire action after the row is updated 
     });
   });
 },
@@ -100,7 +100,7 @@ Firestore.instance.runTransaction((transaction) async {
 ```dart
 Firestore.instance
      .collection("books")
-     .document(document.documentID)
+     .document(document.documentID) // Replace the document.documentID with the row id that you need to delete
      .delete()
      .catchError((e){
    print(e);
