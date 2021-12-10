@@ -7,7 +7,7 @@ This is a simple Flutter project that demonstrate all the CRUD functionality:
 - **Update** / **Edit** from firestore
 - **Delete** / **Remove** from firestore
 
-This source code designed for absolute beginner in Firebase Firestore and it demonstrates the simplest way to the basic functionalities above.
+This source code is designed for beginners in Firebase Firestore, and it demonstrates the simplest way to the basic functionalities above.
 
 ## Demo
 
@@ -31,23 +31,23 @@ This source code designed for absolute beginner in Firebase Firestore and it dem
 
 # Getting Started
 
-To get started to this project you should do the following steps: 
+To get started with this project, you should do the following steps: 
 1. Sign in/up to firebase 
 2. Go to console 
 3. Start a new project 
 4. Create a Firestore database 
-5. Create a "books"" collection 
-6. Add a new record with a "title" and "author" fields    
+5. Create a "books" collection 
+6. Add a new record with "title" and "author" fields    
 7. Download and input google-service.json to the correct location 
 8. Run flutter pub get 
 
 ---
-If you are new to flutter and firebase check the video bellow to get more information on how to connect your flutter app with firebase project. 
+If you are new to flutter and firebase, check the video below to get more information on how to connect your flutter app with the firebase project. 
 
 
 [![How to connect your flutter app with firebase project](https://img.youtube.com/vi/DqJ_KjFzL9I/0.jpg)](https://www.youtube.com/watch?v=DqJ_KjFzL9I)
 
-# Insert a row to firestore (Create)
+# Insert a row to Firestore (Create)
 
 ```dart
 Map<String, dynamic> newBook = new Map<String,dynamic>();
@@ -80,7 +80,7 @@ Firestore.instance
 });
 ```
 
-Or update using a transaction 
+Or update using a transaction. 
 
 ```dart
 Map<String, dynamic> updateBook = new Map<String,dynamic>();
@@ -108,7 +108,7 @@ Firestore.instance
 
 ```
 
-# View all the rows in a collection from firestore (Retrive)
+# View all the rows in a collection from firestore (Retrieve)
 
 ```dart
  @override
